@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "hand_gesture",
+            "cwd": "hand_gesture",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "hand_gesture (profile mode)",
+            "cwd": "hand_gesture",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "hand_gesture (release mode)",
+            "cwd": "hand_gesture",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
