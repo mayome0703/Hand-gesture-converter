@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hand_gesture/screens/home.dart';
+import 'package:hand_gesture/screens/home_connected.dart';
 import 'package:hand_gesture/utils/constants.dart';
 
 class Landing extends StatefulWidget {
@@ -39,7 +40,7 @@ class _LandingState extends State<Landing> {
           ),
         ],
       ),
-      body: const Home(),
+      body: const HomeConnected(),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.grey[100],
         currentIndex: _selectedIndex,
