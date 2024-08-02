@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hand_gesture/screens/graph.dart';
 import 'package:hand_gesture/screens/home.dart';
 import 'package:hand_gesture/screens/home_connected.dart';
+import 'package:hand_gesture/screens/learn.dart';
 import 'package:hand_gesture/utils/constants.dart';
 
 class Landing extends StatefulWidget {
@@ -22,6 +23,26 @@ class _LandingState extends State<Landing> {
 
   @override
   Widget build(BuildContext context) {
+    Widget bodyWidget;
+    switch (_selectedIndex) {
+      case 0:
+        bodyWidget = const HomeConnected();
+        break;
+      case 1:
+        bodyWidget = const Graph();
+        break;
+      case 2:
+        bodyWidget = const Home();
+        break;
+      case 3:
+        bodyWidget = const Learn();
+        break;
+      case 4:
+        bodyWidget = const Learn();
+        break;
+      default:
+        bodyWidget = const Home();
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -41,7 +62,7 @@ class _LandingState extends State<Landing> {
           ),
         ],
       ),
-      body: (_selectedIndex == 2) ? HomeConnected() : Graph(),
+      body: bodyWidget,
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.grey[100],
         currentIndex: _selectedIndex,
