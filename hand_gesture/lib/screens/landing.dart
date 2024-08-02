@@ -3,6 +3,7 @@ import 'package:hand_gesture/screens/graph.dart';
 import 'package:hand_gesture/screens/home.dart';
 import 'package:hand_gesture/screens/home_connected.dart';
 import 'package:hand_gesture/screens/learn.dart';
+import 'package:hand_gesture/screens/profile.dart';
 import 'package:hand_gesture/screens/tutorial.dart';
 import 'package:hand_gesture/utils/constants.dart';
 
@@ -39,7 +40,7 @@ class _LandingState extends State<Landing> {
         bodyWidget = const Learn();
         break;
       case 4:
-        bodyWidget = const Learn();
+        bodyWidget = const Profile();
         break;
       default:
         bodyWidget = const Home();
@@ -50,15 +51,17 @@ class _LandingState extends State<Landing> {
           "H",
           style: TextStyle(
             fontSize: 30,
+            color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.grey[100],
+        backgroundColor: PRIMARY_COLOR,
         actions: [
           IconButton(
             onPressed: () {},
             icon: const Icon(
               Icons.notifications,
               size: 30,
+              color: Colors.white,
             ),
           ),
         ],
