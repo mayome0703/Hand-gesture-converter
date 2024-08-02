@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hand_gesture/screens/graph.dart';
 import 'package:hand_gesture/screens/home.dart';
 import 'package:hand_gesture/screens/home_connected.dart';
 import 'package:hand_gesture/utils/constants.dart';
@@ -40,7 +41,7 @@ class _LandingState extends State<Landing> {
           ),
         ],
       ),
-      body: const HomeConnected(),
+      body: (_selectedIndex == 2) ? HomeConnected() : Graph(),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.grey[100],
         currentIndex: _selectedIndex,
