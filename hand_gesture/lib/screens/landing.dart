@@ -3,6 +3,7 @@ import 'package:hand_gesture/screens/graph.dart';
 import 'package:hand_gesture/screens/home.dart';
 import 'package:hand_gesture/screens/home_connected.dart';
 import 'package:hand_gesture/screens/learn.dart';
+import 'package:hand_gesture/screens/tutorial.dart';
 import 'package:hand_gesture/utils/constants.dart';
 
 class Landing extends StatefulWidget {
@@ -26,7 +27,7 @@ class _LandingState extends State<Landing> {
     Widget bodyWidget;
     switch (_selectedIndex) {
       case 0:
-        bodyWidget = const HomeConnected();
+        bodyWidget = const Tutorial();
         break;
       case 1:
         bodyWidget = const Graph();
