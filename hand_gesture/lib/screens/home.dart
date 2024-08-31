@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hand_gesture/screens/after_connect_home_nav.dart';
-import 'package:hand_gesture/screens/home_connected.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

@@ -6,43 +6,42 @@ class Tutorial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String longVideo = "assets/videos/microprocessor.mp4";
-    return Padding(
-      padding: const EdgeInsets.symmetric(
+    return const Padding(
+      padding: EdgeInsets.symmetric(
         horizontal: 40.0,
         vertical: 10.0,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "Hardware Connection",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
-          CustomVideoPlayerComponent(
-            videoUrl: longVideo,
+          VideoPlayer(
+            id: '8BNp6niBp-A',
           ),
-          const SizedBox(
+          SizedBox(
             height: 40,
           ),
-          const Text(
+          Text(
             "How to wear gloves?",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
-          CustomVideoPlayerComponent(
-            videoUrl: longVideo,
+          VideoPlayer(
+            id: 'oBpehYPtOAA',
           ),
         ],
       ),

@@ -1,72 +1,41 @@
-import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class CustomVideoPlayerComponent extends StatefulWidget {
-  final String videoUrl;
-
-  const CustomVideoPlayerComponent({
-    Key? key,
-    required this.videoUrl,
-  }) : super(key: key);
+class VideoPlayer extends StatefulWidget {
+  final String? id;
+  const VideoPlayer({required this.id, super.key});
 
   @override
-  State<CustomVideoPlayerComponent> createState() =>
-      _CustomVideoPlayerComponentState();
+  State<VideoPlayer> createState() => _VideoPlayerState();
 }
 
-class _CustomVideoPlayerComponentState
-    extends State<CustomVideoPlayerComponent> {
-  late CachedVideoPlayerController _videoPlayerController;
-  late CustomVideoPlayerController _customVideoPlayerController;
-  late CustomVideoPlayerWebController _customVideoPlayerWebController;
-
-  final CustomVideoPlayerSettings _customVideoPlayerSettings =
-      const CustomVideoPlayerSettings(showSeekButtons: true);
+class _VideoPlayerState extends State<VideoPlayer> {
+  late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    _initializeControllers();
-  }
-
-  void _initializeControllers() {
-    _videoPlayerController = CachedVideoPlayerController.asset(
-      widget.videoUrl,
-    )..initialize().then((_) {
-        setState(() {}); // Update the UI once the controller is initialized
-      });
-
-    _customVideoPlayerController = CustomVideoPlayerController(
-      context: context,
-      videoPlayerController: _videoPlayerController,
-      customVideoPlayerSettings: _customVideoPlayerSettings,
+    _controller = YoutubePlayerController(
+      initialVideoId: widget.id ??
+          'Vl2wRbO8LZU', //https://www.youtube.com/watch?v=ueZbo_bQHMg
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
+        mute: true,
+        isLive: false,
+      ),
     );
-
-    if (kIsWeb) {
-      _customVideoPlayerWebController = CustomVideoPlayerWebController(
-        webVideoPlayerSettings: CustomVideoPlayerWebSettings(
-          src: widget.videoUrl,
-        ),
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    _customVideoPlayerController.dispose();
-    _videoPlayerController.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return kIsWeb
-        ? CustomVideoPlayerWeb(
-            customVideoPlayerWebController: _customVideoPlayerWebController,
-          )
-        : CustomVideoPlayer(
-            customVideoPlayerController: _customVideoPlayerController,
-          );
+    return YoutubePlayer(
+      controller: _controller,
+      showVideoProgressIndicator: true,
+      progressIndicatorColor: Colors.red,
+      progressColors: const ProgressBarColors(
+        playedColor: Colors.red,
+        handleColor: Colors.red,
+      ),
+    );
   }
 }
