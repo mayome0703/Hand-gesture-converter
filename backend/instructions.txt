@@ -1,0 +1,10 @@
+before running the app:
+flask db init
+flask db migrate
+flask db upgrade
+
+to run the app:
+flask run
+
+to run in custom host and port:
+flask run -h <host_ip> -p <port>
