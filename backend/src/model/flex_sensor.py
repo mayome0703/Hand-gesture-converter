@@ -13,3 +13,7 @@ class FlexSensor(db.Model):
         self.flex_min = flex_min
         self.flex_max = flex_max
         self.sign_parameter = sign_parameter
+
+    def __str__(self):
+        return f'{{\nflex_min: {self.flex_min},\nflex_max: {self.flex_max}}}'
+

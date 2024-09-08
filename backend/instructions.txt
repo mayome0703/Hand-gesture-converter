@@ -1,3 +1,12 @@
+create a virtual environment first and then activate
+
+to install all the required packages and extensions:
+cd backend/src
+pip install -r requirements.txt
+[*** DO NOT RUN COMMAND pip freeze > requirements.txt BEFORE INSTALLING,
+ OTHERWISE requirements.txt WILL BE BLANK AND ALL THE PACKAGES WILL BE LOST ***]
+
+
 before running the app:
 flask db init
 flask db migrate
@@ -8,3 +17,11 @@ flask run
 
 to run in custom host and port:
 flask run -h <host_ip> -p <port>
+
+required installation:
+flask,
+flask-sqlalchemy,
+Flask-Migrate,
+psycopg2-binary (for postgres, different db will require different package),
+flask-marshmallow,
+marshmallow-sqlalchemy

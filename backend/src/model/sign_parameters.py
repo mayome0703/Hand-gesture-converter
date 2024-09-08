@@ -11,3 +11,6 @@ class SignParameters(db.Model):
 
     def __init__(self, sign):
         self.sign = sign
+
+    def __str__(self):
+        return f'{{\nsign: {self.sign},\nflex_sensors: {self.flex_sensors}\naccelerometers: {self.accelerometers}}}'

@@ -13,3 +13,7 @@ class Accelerometer(db.Model):
         self.acc_min = acc_min
         self.acc_max = acc_max
         self.sign_parameter = sign_parameter
+
+    def __str__(self):
+        return f'{{\nacc_min: {self.acc_min},\nacc_max: {self.acc_max}}}'
+
