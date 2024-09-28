@@ -4,7 +4,9 @@ import 'package:hand_gesture/screens/home.dart';
 import 'package:hand_gesture/screens/home_connected.dart';
 import 'package:hand_gesture/screens/learn.dart';
 import 'package:hand_gesture/screens/profile.dart';
+import 'package:hand_gesture/screens/serial.dart';
 import 'package:hand_gesture/screens/tutorial.dart';
+import 'package:hand_gesture/screens/values.dart';
 import 'package:hand_gesture/utils/constants.dart';
 
 class Landing extends StatefulWidget {
@@ -40,7 +42,10 @@ class _LandingState extends State<Landing> {
         bodyWidget = const Learn();
         break;
       case 4:
-        bodyWidget = const Profile();
+        bodyWidget = const BluetoothSerialMonitor();
+        break;
+      case 5:
+        bodyWidget = const Value();
         break;
       default:
         bodyWidget = const Home();
@@ -115,6 +120,13 @@ class _LandingState extends State<Landing> {
               color: _selectedIndex == 4 ? PRIMARY_COLOR : Colors.grey[600],
             ),
             label: "Profile",
+          ),BottomNavigationBarItem(
+            icon: Icon(
+              Icons.info,
+              size: _selectedIndex == 4 ? 40 : 30,
+              color: _selectedIndex == 4 ? PRIMARY_COLOR : Colors.grey[600],
+            ),
+            label: "Values",
           ),
         ],
       ),

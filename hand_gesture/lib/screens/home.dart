@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:hand_gesture/screens/after_connect_home_nav.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
@@ -31,6 +30,7 @@ class _HomeState extends State<Home> {
     }
   }
 
+  // Connect to the HC-05 Bluetooth device
   void connectToBluetooth() async {
     List<BluetoothDevice> devices = await _bluetooth.getBondedDevices();
     BluetoothDevice? targetDevice;
@@ -47,18 +47,36 @@ class _HomeState extends State<Home> {
       await BluetoothConnection.toAddress(targetDevice.address)
           .then((_connection) {
         connection = _connection;
-        isConnected = true;
+        setState(() {
+          isConnected = true; // Connection successful
+        });
 
+        // Listen for incoming data
         connection!.input!.listen((Uint8List data) {
           setState(() {
             receivedData = String.fromCharCodes(data);
           });
         }).onDone(() {
-          isConnected = false;
+          setState(() {
+            isConnected = false; // Connection closed
+          });
         });
+
+        // After connection is established, navigate to the next screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const AfterConnectHomeNav(),
+          ),
+        );
       }).catchError((error) {
         print('Error: $error');
+        setState(() {
+          isConnected = false; // Connection failed
+        });
       });
+    } else {
+      print('No HC-05 device found.');
     }
   }
 
@@ -96,20 +114,12 @@ class _HomeState extends State<Home> {
             ),
             ElevatedButton(
               style: ButtonStyle(
-                padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                   const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
                 ),
               ),
               onPressed: () {
-                connectToBluetooth();
-                if (isConnected) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AfterConnectHomeNav(),
-                    ),
-                  );
-                }
+                connectToBluetooth(); // Initiate connection
               },
               child: const Text("Connect"),
             ),
