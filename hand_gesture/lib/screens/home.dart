@@ -55,6 +55,7 @@ class _HomeState extends State<Home> {
         connection!.input!.listen((Uint8List data) {
           setState(() {
             receivedData = String.fromCharCodes(data);
+            print('Received data: $receivedData');
           });
         }).onDone(() {
           setState(() {
@@ -114,7 +115,7 @@ class _HomeState extends State<Home> {
             ),
             ElevatedButton(
               style: ButtonStyle(
-                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                   const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
                 ),
               ),

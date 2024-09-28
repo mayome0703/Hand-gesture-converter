@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
-class BluetoothSerialMonitor extends StatefulWidget {
-  const BluetoothSerialMonitor({Key? key}) : super(key: key);
+class Values extends StatefulWidget {
+  const Values({Key? key}) : super(key: key);
 
   @override
-  State<BluetoothSerialMonitor> createState() => _BluetoothSerialMonitorState();
+  State<Values> createState() => _ValuesState();
 }
 
-class _BluetoothSerialMonitorState extends State<BluetoothSerialMonitor> {
+class _ValuesState extends State<Values> {
   FlutterBluetoothSerial _bluetooth = FlutterBluetoothSerial.instance;
   BluetoothConnection? connection;
   bool isConnected = false;
@@ -47,7 +47,8 @@ class _BluetoothSerialMonitorState extends State<BluetoothSerialMonitor> {
 
     if (targetDevice != null) {
       try {
-        BluetoothConnection newConnection = await BluetoothConnection.toAddress(targetDevice.address);
+        BluetoothConnection newConnection =
+            await BluetoothConnection.toAddress(targetDevice.address);
         setState(() {
           connection = newConnection;
           isConnected = true;
@@ -58,7 +59,7 @@ class _BluetoothSerialMonitorState extends State<BluetoothSerialMonitor> {
         connection!.input!.listen((Uint8List data) {
           String incomingData = String.fromCharCodes(data);
           buffer += incomingData; // Add incoming data to the buffer
-          
+
           if (buffer.contains('\n')) {
             // Split the buffer into lines by the newline
             List<String> lines = buffer.split('\n');
@@ -142,47 +143,50 @@ class _BluetoothSerialMonitorState extends State<BluetoothSerialMonitor> {
       appBar: AppBar(
         title: const Text('Bluetooth Serial Monitor'),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Sensor Data",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Sensor Data",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              _buildDataDisplay("aX", ax),
-              _buildDataDisplay("aY", ay),
-              _buildDataDisplay("aZ", az),
-              _buildDataDisplay("F1", f1),
-              _buildDataDisplay("F2", f2),
-              _buildDataDisplay("F3", f3),
-              _buildDataDisplay("F4", f4),
-              _buildDataDisplay("F5", f5),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: isConnected ? null : connectToBluetooth,
-                    child: Text(isConnected ? "Connected" : "Connect to HC-05"),
-                  ),
-                  const SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: isConnected ? disconnectFromBluetooth : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
+                const SizedBox(height: 20),
+                _buildDataDisplay("aX", ax),
+                _buildDataDisplay("aY", ay),
+                _buildDataDisplay("aZ", az),
+                _buildDataDisplay("F1", f1),
+                _buildDataDisplay("F2", f2),
+                _buildDataDisplay("F3", f3),
+                _buildDataDisplay("F4", f4),
+                _buildDataDisplay("F5", f5),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: isConnected ? null : connectToBluetooth,
+                      child:
+                          Text(isConnected ? "Connected" : "Connect to HC-05"),
                     ),
-                    child: const Text("Stop"),
-                  ),
-                ],
-              ),
-            ],
+                    const SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: isConnected ? disconnectFromBluetooth : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                      ),
+                      child: const Text("Stop"),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
