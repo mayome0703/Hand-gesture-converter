@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class HomeConnected extends StatelessWidget {
-  const HomeConnected({super.key});
+  final FlutterTts flutterTts = FlutterTts();
+  HomeConnected({super.key});
+
+  //text to speech. DO NOT REMOVE*****
+  void speak(String text) async {
+    await flutterTts.setLanguage('bn-BD');
+    await flutterTts.setPitch(1);
+    await flutterTts.awaitSpeakCompletion(true);
+    await flutterTts.setSpeechRate(0.3);
+    await flutterTts.speak(text + text); //one letter makes barely any sound, but repeating twice, it can be heard.
+  }
+  //DO NOT REMOVE*******
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +46,16 @@ class HomeConnected extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Column(
+              child: Column(
                 children: [
-                  Text(
+                  const Text(
                     "Identified alphabet is",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "A",
                     style: TextStyle(
                       fontSize: 100,
@@ -52,10 +64,17 @@ class HomeConnected extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Icon(
-                        Icons.volume_up,
-                        size: 30,
+                      //DO NOT REMOVE****
+                      IconButton(
+                        onPressed: () {
+                          speak('অ');
+                        },
+                        icon: const Icon(
+                          Icons.volume_up,
+                          size: 30,
+                        ),
                       )
+                      //DO NOT REMOVE****
                     ],
                   )
                 ],
