@@ -45,7 +45,7 @@ class _LandingState extends State<Landing> {
         bodyWidget = const BluetoothSerialMonitor();
         break;
       case 5:
-        bodyWidget = const Value();
+        bodyWidget = const Values();
         break;
       default:
         bodyWidget = const Home();
