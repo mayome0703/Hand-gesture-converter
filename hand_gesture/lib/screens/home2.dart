@@ -1,12 +1,7 @@
 ﻿import 'dart:async';
-import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:hand_gesture/screens/after_connect_home_nav.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:hand_gesture/screens/home_connected.dart';
-import 'package:hand_gesture/utils/api_sattings.dart';
-import 'package:http/http.dart' as http;
 
 class Home2 extends StatefulWidget {
   const Home2({super.key});

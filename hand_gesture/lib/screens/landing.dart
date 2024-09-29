@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hand_gesture/screens/graph.dart';
-import 'package:hand_gesture/screens/home.dart';
 import 'package:hand_gesture/screens/home2.dart';
-import 'package:hand_gesture/screens/home_connected.dart';
 import 'package:hand_gesture/screens/learn.dart';
-import 'package:hand_gesture/screens/profile.dart';
 import 'package:hand_gesture/screens/serial.dart';
 import 'package:hand_gesture/screens/tutorial.dart';
 import 'package:hand_gesture/screens/values.dart';

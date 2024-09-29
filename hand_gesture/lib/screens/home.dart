@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:hand_gesture/screens/after_connect_home_nav.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:hand_gesture/utils/api_sattings.dart';
-import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   const Home({super.key});
