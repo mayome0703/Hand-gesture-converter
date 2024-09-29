@@ -59,7 +59,7 @@ class _LandingState extends State<AfterConnectHomeNav> {
         bodyWidget = const Graph();
         break;
       case 2:
-        bodyWidget = const Learn();
+        bodyWidget = HomeConnected();
         break;
       case 3:
         bodyWidget = const Learn();

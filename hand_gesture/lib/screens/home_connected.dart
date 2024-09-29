@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:hand_gesture/utils/api_sattings.dart';
 import 'package:hand_gesture/utils/constants.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class HomeConnected extends StatefulWidget {
+  
   final BluetoothDevice? bluetoothDevice;
 
   const HomeConnected({
@@ -20,6 +22,7 @@ class HomeConnected extends StatefulWidget {
 }
 
 class _HomeConnectedState extends State<HomeConnected> {
+  final FlutterTts flutterTts = FlutterTts();
   String receivedData = "";
   String DetectedSignedLetter = "";
   BluetoothConnection? connection;
@@ -27,6 +30,14 @@ class _HomeConnectedState extends State<HomeConnected> {
   void initState() {
     super.initState();
     getData();
+  }
+
+  void speak(String text) async {
+    await flutterTts.setLanguage('bn-BD');
+    await flutterTts.setPitch(1);
+    await flutterTts.awaitSpeakCompletion(true);
+    await flutterTts.setSpeechRate(0.3);
+    await flutterTts.speak(text + text); //one letter makes barely any sound, but repeating twice, it can be heard.
   }
 
   void getData() async {
@@ -228,7 +239,12 @@ class _HomeConnectedState extends State<HomeConnected> {
                       children: [
                         IconButton(
                           icon: Icon(Icons.volume_up, size: 30),
-                          onPressed: () {},
+                          onPressed: () {
+                          if(DetectedSignedLetter != "No character found")
+                            {
+                              speak(DetectedSignedLetter);
+                            }
+                          },
                         ),
                       ],
                     ),
