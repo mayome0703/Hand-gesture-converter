@@ -6,9 +6,11 @@ import 'package:hand_gesture/screens/learn.dart';
 import 'package:hand_gesture/screens/profile.dart';
 import 'package:hand_gesture/screens/tutorial.dart';
 import 'package:hand_gesture/utils/constants.dart';
+import 'dart:async';
 
 class AfterConnectHomeNav extends StatefulWidget {
-  const AfterConnectHomeNav({super.key});
+  final Stream<String> signedLetterStream;
+  const AfterConnectHomeNav({super.key, required this.signedLetterStream});
 
   @override
   State<AfterConnectHomeNav> createState() => _LandingState();
@@ -16,6 +18,29 @@ class AfterConnectHomeNav extends StatefulWidget {
 
 class _LandingState extends State<AfterConnectHomeNav> {
   int _selectedIndex = 2;
+  late StreamSubscription<String> _subscription;
+  String currentSignedLetter = "";
+  List<String> history = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Listen to the signedLetterStream
+    _subscription = widget.signedLetterStream.listen((signedLetter) {
+      setState(() {
+        currentSignedLetter = signedLetter;
+        if (signedLetter.isNotEmpty) {
+          history.add(signedLetter);
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -34,7 +59,7 @@ class _LandingState extends State<AfterConnectHomeNav> {
         bodyWidget = const Graph();
         break;
       case 2:
-        bodyWidget = const HomeConnected();
+        bodyWidget = const Learn();
         break;
       case 3:
         bodyWidget = const Learn();
@@ -48,6 +73,7 @@ class _LandingState extends State<AfterConnectHomeNav> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: PRIMARY_COLOR,
+        title: const Text("Hand Gesture Detector"),
         actions: [
           IconButton(
             onPressed: () {},

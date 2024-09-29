@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hand_gesture/screens/graph.dart';
 import 'package:hand_gesture/screens/home.dart';
+import 'package:hand_gesture/screens/home2.dart';
 import 'package:hand_gesture/screens/home_connected.dart';
 import 'package:hand_gesture/screens/learn.dart';
 import 'package:hand_gesture/screens/profile.dart';
@@ -36,7 +37,7 @@ class _LandingState extends State<Landing> {
         bodyWidget = const Graph();
         break;
       case 2:
-        bodyWidget = const Home();
+        bodyWidget = const Home2();
         break;
       case 3:
         bodyWidget = const Learn();
@@ -48,7 +49,7 @@ class _LandingState extends State<Landing> {
         bodyWidget = const Values();
         break;
       default:
-        bodyWidget = const Home();
+        bodyWidget = const Home2();
     }
     return Scaffold(
       appBar: AppBar(
